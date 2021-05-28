@@ -8,7 +8,7 @@ let getBalanceUseCase: GetBalanceUseCase;
 let statementsRepositoryInMemory: InMemoryStatementsRepository;
 let usersRepositoryInMemory: InMemoryUsersRepository;
 
-describe('Get Balance', () => {
+describe('Get Balance Use Case', () => {
   beforeEach(() => {
     statementsRepositoryInMemory = new InMemoryStatementsRepository();
     usersRepositoryInMemory = new InMemoryUsersRepository();
@@ -44,7 +44,7 @@ describe('Get Balance', () => {
     // Consulta o balanço
     const balance = await getBalanceUseCase.execute({ user_id: createdUser.id! });
 
-    expect(balance.balance).toBe(70);
+    expect(Number(balance.balance)).toBe(70.00);
   });
 
   it('should not be able to get the balance for a non existing user', async () => {

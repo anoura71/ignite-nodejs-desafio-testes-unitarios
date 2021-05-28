@@ -5,7 +5,7 @@ import { CreateUserError } from './CreateUserError';
 let createUserUseCase: CreateUserUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
 
-describe('Create User', () => {
+describe('Create User Use Case', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new InMemoryUsersRepository();
     createUserUseCase = new CreateUserUseCase(

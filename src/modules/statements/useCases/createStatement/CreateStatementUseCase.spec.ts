@@ -8,7 +8,7 @@ let createStatementUseCase: CreateStatementUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
 let statementsRepositoryInMemory: InMemoryStatementsRepository;
 
-describe('Create Statement', () => {
+describe('Create Statement Use Case', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new InMemoryUsersRepository();
     statementsRepositoryInMemory = new InMemoryStatementsRepository();

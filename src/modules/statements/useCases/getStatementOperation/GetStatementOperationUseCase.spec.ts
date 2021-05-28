@@ -8,7 +8,7 @@ let getStatementOperationUseCase: GetStatementOperationUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
 let statementsRepositoryInMemory: InMemoryStatementsRepository;
 
-describe('Get Statement Operation', () => {
+describe('Get Statement Operation Use Case', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new InMemoryUsersRepository();
     statementsRepositoryInMemory = new InMemoryStatementsRepository();
@@ -40,7 +40,7 @@ describe('Get Statement Operation', () => {
       statement_id: statement.id!,
     });
 
-    expect(statementOperation.amount).toBe(33);
+    expect(Number(statementOperation.amount)).toBe(33.00);
     expect(statementOperation.type).toBe(OperationType.DEPOSIT);
   });
 

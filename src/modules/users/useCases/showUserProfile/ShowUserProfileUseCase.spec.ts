@@ -5,7 +5,7 @@ import { ShowUserProfileError } from './ShowUserProfileError';
 let showUserProfileUseCase: ShowUserProfileUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
 
-describe('Show User Profile', () => {
+describe('Show User Profile Use Case', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new InMemoryUsersRepository();
     showUserProfileUseCase = new ShowUserProfileUseCase(
@@ -21,7 +21,7 @@ describe('Show User Profile', () => {
       password: 'any'
     }
     const createdUser = await usersRepositoryInMemory.create(user);
-    // Busca o perfil do usuário
+    // Exibe o perfil do usuário
     const userProfile = await showUserProfileUseCase.execute(createdUser.id!);
 
     expect(userProfile).toHaveProperty('id');
