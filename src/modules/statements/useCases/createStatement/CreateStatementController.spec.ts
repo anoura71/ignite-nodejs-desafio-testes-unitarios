@@ -4,6 +4,7 @@ import { Connection, createConnection } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 import { app } from '../../../../app';
+import { OperationType } from '../../entities/Statement';
 
 let connection: Connection;
 
@@ -50,7 +51,7 @@ describe('Create Statement Controller', () => {
       .post('/api/v1/statements/deposit')
       .send({
         amount: 100.00,
-        description: 'Bank transfer',
+        description: 'Cash deposit',
       })
       .set({
         Authorization: `Bearer ${token}`,
@@ -77,7 +78,7 @@ describe('Create Statement Controller', () => {
       .post('/api/v1/statements/deposit')
       .send({
         amount: 120.00,
-        description: 'Bank transfer',
+        description: 'Cash deposit',
       })
       .set({
         Authorization: `Bearer ${token}`,
@@ -96,7 +97,7 @@ describe('Create Statement Controller', () => {
 
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty('id');
-    expect(response.body.type).toBe('withdraw');
+    expect(response.body.type).toBe(OperationType.WITHDRAW);
     expect(Number(response.body.amount)).toBe(70.00);
   });
 
@@ -109,7 +110,7 @@ describe('Create Statement Controller', () => {
       .post('/api/v1/statements/deposit')
       .send({
         amount: 40.00,
-        description: 'Bank transfer',
+        description: 'Cash deposit',
       })
       .set({
         Authorization: `Bearer ${invalidToken}`,
@@ -125,7 +126,7 @@ describe('Create Statement Controller', () => {
       .post('/api/v1/statements/deposit')
       .send({
         amount: 40.00,
-        description: 'Bank transfer',
+        description: 'Cash deposit',
       });
 
     expect(response.statusCode).toBe(401);
