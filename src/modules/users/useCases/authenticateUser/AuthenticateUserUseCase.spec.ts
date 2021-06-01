@@ -2,7 +2,7 @@ import auth from '../../../../config/auth';
 import { InMemoryUsersRepository } from '../../../users/repositories/in-memory/InMemoryUsersRepository';
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
-import { IncorrectEmailOrPasswordError } from './IncorrectEmailOrPasswordError';
+import { IncorrectEmailOrPasswordError } from '../../errors/IncorrectEmailOrPasswordError';
 
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;

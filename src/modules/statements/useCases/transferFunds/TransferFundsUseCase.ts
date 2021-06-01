@@ -2,8 +2,8 @@ import { inject, injectable } from 'tsyringe';
 import { IUsersRepository } from '../../../users/repositories/IUsersRepository';
 import { OperationType, Statement } from '../../entities/Statement';
 import { IStatementsRepository } from '../../repositories/IStatementsRepository';
-import { ITransferFundsDTO } from './ITransferFundsDTO';
-import { TransferFundsError } from './TransferFundsError';
+import { ITransferFundsDTO } from '../../dtos/ITransferFundsDTO';
+import { TransferFundsError } from '../../errors/TransferFundsError';
 
 @injectable()
 class TransferFundsUseCase {

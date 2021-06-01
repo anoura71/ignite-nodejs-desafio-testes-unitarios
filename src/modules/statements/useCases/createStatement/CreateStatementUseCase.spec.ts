@@ -1,12 +1,16 @@
+import { v4 } from 'uuid';
+
 import { OperationType } from '../../entities/Statement';
 import { InMemoryUsersRepository } from '../../../users/repositories/in-memory/InMemoryUsersRepository';
 import { InMemoryStatementsRepository } from '../../repositories/in-memory/InMemoryStatementsRepository';
 import { CreateStatementUseCase } from './CreateStatementUseCase';
-import { CreateStatementError } from './CreateStatementError';
+import { CreateStatementError } from '../../errors/CreateStatementError';
 
 let createStatementUseCase: CreateStatementUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
 let statementsRepositoryInMemory: InMemoryStatementsRepository;
+
+const NON_EXISTENT_USER_UUID = v4();
 
 describe('Create Statement Use Case', () => {
   beforeEach(() => {
@@ -69,7 +73,7 @@ describe('Create Statement Use Case', () => {
   it('should not be able to create a new statement for a non existing user', async () => {
     // Tenta criar uma movimentação, sem criar o usuário
     const statement = {
-      user_id: 'non-existent',
+      user_id: NON_EXISTENT_USER_UUID,
       description: 'Operation description',
       amount: 100.00,
       type: OperationType.DEPOSIT,

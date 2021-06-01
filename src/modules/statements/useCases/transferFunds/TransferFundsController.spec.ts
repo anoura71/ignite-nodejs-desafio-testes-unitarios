@@ -7,7 +7,7 @@ import { app } from '../../../../app';
 import { JWTInvalidTokenError } from '../../../../shared/errors/JWTInvalidTokenError';
 import { JWTTokenMissingError } from '../../../../shared/errors/JWTTokenMissingError';
 import { OperationType } from '../../entities/Statement';
-import { TransferFundsError } from './TransferFundsError';
+import { TransferFundsError } from '../../errors/TransferFundsError';
 
 let connection: Connection;
 

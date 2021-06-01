@@ -1,9 +1,13 @@
+import { v4 } from 'uuid';
+
 import { InMemoryUsersRepository } from '../../../users/repositories/in-memory/InMemoryUsersRepository';
 import { ShowUserProfileUseCase } from './ShowUserProfileUseCase';
-import { ShowUserProfileError } from './ShowUserProfileError';
+import { ShowUserProfileError } from '../../errors/ShowUserProfileError';
 
 let showUserProfileUseCase: ShowUserProfileUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
+
+const NON_EXISTENT_USER_UUID = v4();
 
 describe('Show User Profile Use Case', () => {
   beforeEach(() => {
@@ -33,7 +37,7 @@ describe('Show User Profile Use Case', () => {
   it('should not be able to show a profile of a non-existent user', async () => {
     // Tenta exibir um perfil de usuário não existente
     await expect(
-      showUserProfileUseCase.execute('non-existent')
+      showUserProfileUseCase.execute(NON_EXISTENT_USER_UUID)
     ).rejects.toBeInstanceOf(ShowUserProfileError);
   });
 });

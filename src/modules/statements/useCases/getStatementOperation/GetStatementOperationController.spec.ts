@@ -4,6 +4,8 @@ import { Connection, createConnection } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 import { app } from '../../../../app';
+import { JWTInvalidTokenError } from '../../../../shared/errors/JWTInvalidTokenError';
+import { JWTTokenMissingError } from '../../../../shared/errors/JWTTokenMissingError';
 import { OperationType } from '../../entities/Statement';
 
 let connection: Connection;
@@ -102,7 +104,7 @@ describe('Get Statement Operation Controller', () => {
       });
 
     expect(response.statusCode).toBe(401);
-    expect(response.body.message).toBe('JWT invalid token!');
+    expect(response.body.message).toBe(new JWTInvalidTokenError().getMessage());
   });
 
   it('should not be able to get a statement operation if the token is missing', async () => {
@@ -131,6 +133,6 @@ describe('Get Statement Operation Controller', () => {
       .get(`/api/v1/statements/statements/${responseDeposit.body.id}`);
 
     expect(response.statusCode).toBe(401);
-    expect(response.body.message).toBe('JWT token is missing!');
+    expect(response.body.message).toBe(new JWTTokenMissingError().getMessage());
   });
 });

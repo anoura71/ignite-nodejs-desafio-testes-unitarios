@@ -1,4 +1,4 @@
-import { AppError } from '../../../../shared/errors/AppError';
+import { AppError } from '../../../shared/errors/AppError';
 
 export namespace TransferFundsError {
   export class SendingUserNotFound extends AppError {

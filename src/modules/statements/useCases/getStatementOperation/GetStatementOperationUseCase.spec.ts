@@ -1,12 +1,17 @@
+import { v4 } from 'uuid';
+
 import { OperationType } from '../../entities/Statement';
 import { InMemoryUsersRepository } from '../../../users/repositories/in-memory/InMemoryUsersRepository';
 import { InMemoryStatementsRepository } from '../../repositories/in-memory/InMemoryStatementsRepository';
 import { GetStatementOperationUseCase } from './GetStatementOperationUseCase';
-import { GetStatementOperationError } from './GetStatementOperationError';
+import { GetStatementOperationError } from '../../errors/GetStatementOperationError';
 
 let getStatementOperationUseCase: GetStatementOperationUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
 let statementsRepositoryInMemory: InMemoryStatementsRepository;
+
+const NON_EXISTENT_USER_UUID = v4();
+const NON_EXISTENT_STATEMENT_UUID = v4();
 
 describe('Get Statement Operation Use Case', () => {
   beforeEach(() => {
@@ -64,7 +69,7 @@ describe('Get Statement Operation Use Case', () => {
     // Tenta consultar a operação, passando um id de usuário não existente
     await expect(
       getStatementOperationUseCase.execute({
-        user_id: 'non-existent',
+        user_id: NON_EXISTENT_USER_UUID,
         statement_id: statement.id!,
       })
     ).rejects.toBeInstanceOf(GetStatementOperationError.UserNotFound);
@@ -83,7 +88,7 @@ describe('Get Statement Operation Use Case', () => {
     await expect(
       getStatementOperationUseCase.execute({
         user_id: createdUser.id!,
-        statement_id: 'non-existent',
+        statement_id: NON_EXISTENT_STATEMENT_UUID,
       })
     ).rejects.toBeInstanceOf(GetStatementOperationError.StatementNotFound);
   });

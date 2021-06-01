@@ -4,6 +4,7 @@ import { Connection, createConnection } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 import { app } from '../../../../app';
+import { CreateUserError } from '../../errors/CreateUserError';
 
 let connection: Connection;
 
@@ -65,6 +66,6 @@ describe('Create User Controller', () => {
       });
 
     expect(response.statusCode).toBe(400);
-    expect(response.body.message).toBe('User already exists');
+    expect(response.body.message).toBe(new CreateUserError().getMessage());
   });
 });

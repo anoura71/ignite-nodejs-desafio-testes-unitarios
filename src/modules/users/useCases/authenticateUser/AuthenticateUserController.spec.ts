@@ -4,6 +4,7 @@ import { Connection, createConnection } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 import { app } from '../../../../app';
+import { IncorrectEmailOrPasswordError } from '../../errors/IncorrectEmailOrPasswordError';
 
 let connection: Connection;
 
@@ -58,7 +59,7 @@ describe('Authenticate User Controller', () => {
       });
 
     expect(response.statusCode).toBe(401);
-    expect(response.body.message).toBe('Incorrect email or password');
+    expect(response.body.message).toBe(new IncorrectEmailOrPasswordError().getMessage());
   });
 
   it('should not be able to authenticate a user with a non-matching password', async () => {
@@ -71,6 +72,6 @@ describe('Authenticate User Controller', () => {
       });
 
     expect(response.statusCode).toBe(401);
-    expect(response.body.message).toBe('Incorrect email or password');
+    expect(response.body.message).toBe(new IncorrectEmailOrPasswordError().getMessage());
   });
 });

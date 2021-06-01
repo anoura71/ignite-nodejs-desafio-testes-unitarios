@@ -1,6 +1,6 @@
 import { InMemoryUsersRepository } from '../../../users/repositories/in-memory/InMemoryUsersRepository';
 import { CreateUserUseCase } from './CreateUserUseCase';
-import { CreateUserError } from './CreateUserError';
+import { CreateUserError } from '../../errors/CreateUserError';
 
 let createUserUseCase: CreateUserUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;

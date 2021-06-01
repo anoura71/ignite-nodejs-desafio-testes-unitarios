@@ -1,9 +1,10 @@
+import { v4 } from 'uuid';
+
 import { OperationType } from '../../entities/Statement';
 import { InMemoryUsersRepository } from '../../../users/repositories/in-memory/InMemoryUsersRepository';
 import { InMemoryStatementsRepository } from '../../repositories/in-memory/InMemoryStatementsRepository';
 import { TransferFundsUseCase } from './TransferFundsUseCase';
-import { TransferFundsError } from './TransferFundsError';
-import { AuthenticateUserUseCase } from '../../../users/useCases/authenticateUser/AuthenticateUserUseCase';
+import { TransferFundsError } from '../../errors/TransferFundsError';
 
 let transferFundsUseCase: TransferFundsUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;
@@ -19,7 +20,7 @@ const RECEIVER_EMAIL = 'receiver@fin.com';
 const RECEIVER_PASSWORD = 'any';
 let idReceiver: string;
 
-const NON_EXISTENT_USER_UUID = 'af2c9f76-afbc-4f59-b570-7b4b20d0b330';
+const NON_EXISTENT_USER_UUID = v4();
 
 describe('Transfer Funds Use Case', () => {
   beforeEach(async () => {

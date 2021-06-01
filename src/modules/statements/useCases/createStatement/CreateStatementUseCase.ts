@@ -3,8 +3,8 @@ import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
 import { OperationType } from "../../entities/Statement";
 import { IStatementsRepository } from "../../repositories/IStatementsRepository";
-import { CreateStatementError } from "./CreateStatementError";
-import { ICreateStatementDTO } from "./ICreateStatementDTO";
+import { CreateStatementError } from "../../errors/CreateStatementError";
+import { ICreateStatementDTO } from "../../dtos/ICreateStatementDTO";
 
 @injectable()
 export class CreateStatementUseCase {

@@ -1,12 +1,16 @@
+import { v4 } from 'uuid';
+
 import { OperationType } from '../../entities/Statement';
 import { InMemoryUsersRepository } from '../../../users/repositories/in-memory/InMemoryUsersRepository';
 import { InMemoryStatementsRepository } from '../../repositories/in-memory/InMemoryStatementsRepository';
 import { GetBalanceUseCase } from './GetBalanceUseCase';
-import { GetBalanceError } from './GetBalanceError';
+import { GetBalanceError } from '../../errors/GetBalanceError';
 
 let getBalanceUseCase: GetBalanceUseCase;
 let statementsRepositoryInMemory: InMemoryStatementsRepository;
 let usersRepositoryInMemory: InMemoryUsersRepository;
+
+const NON_EXISTENT_USER_UUID = v4();
 
 describe('Get Balance Use Case', () => {
   beforeEach(() => {
@@ -49,7 +53,7 @@ describe('Get Balance Use Case', () => {
 
   it('should not be able to get the balance for a non existing user', async () => {
     await expect(
-      getBalanceUseCase.execute({ user_id: 'non-existent' })
+      getBalanceUseCase.execute({ user_id: NON_EXISTENT_USER_UUID })
     ).rejects.toBeInstanceOf(GetBalanceError);
   });
 });
