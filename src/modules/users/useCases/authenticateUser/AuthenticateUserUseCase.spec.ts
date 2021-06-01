@@ -40,12 +40,12 @@ describe('Authenticate User Use Case', () => {
 
   it('should not be able to authenticate a user with a non-existing e-mail', async () => {
     // Tenta autenticar um usuário, usando um e-mail não cadastrado
-    expect(async () => {
-      await authenticateUserUseCase.execute({
+    await expect(
+      authenticateUserUseCase.execute({
         email: 'non-existent@foo.com',
         password: 'any'
-      });
-    }).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
+      })
+    ).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
   });
 
   it('should not be able to authenticate a user with a non-matching password', async () => {
@@ -57,11 +57,11 @@ describe('Authenticate User Use Case', () => {
     }
     const createdUser = await createUserUseCase.execute(user);
     // Tenta autenticar o usuário, usando uma senha diferente da cadastrada
-    expect(async () => {
-      await authenticateUserUseCase.execute({
+    await expect(
+      authenticateUserUseCase.execute({
         email: 'john.doe@foo.com',
         password: 'other'
-      });
-    }).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
+      })
+    ).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
   });
 });

@@ -60,7 +60,7 @@ export class StatementsRepository implements IStatementsRepository {
           return acc + Number(operation.amount);
         }
       }
-    }, 0)
+    }, 0);
 
     if (with_statement) {
       return {

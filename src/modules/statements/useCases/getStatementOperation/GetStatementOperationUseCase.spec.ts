@@ -62,12 +62,12 @@ describe('Get Statement Operation Use Case', () => {
     const statement = await statementsRepositoryInMemory.create(deposit);
 
     // Tenta consultar a operação, passando um id de usuário não existente
-    expect(async () => {
-      await getStatementOperationUseCase.execute({
+    await expect(
+      getStatementOperationUseCase.execute({
         user_id: 'non-existent',
         statement_id: statement.id!,
-      });
-    }).rejects.toBeInstanceOf(GetStatementOperationError.UserNotFound);
+      })
+    ).rejects.toBeInstanceOf(GetStatementOperationError.UserNotFound);
   });
 
   it('should not be able to get a non existent statement operation', async () => {
@@ -80,11 +80,11 @@ describe('Get Statement Operation Use Case', () => {
     const createdUser = await usersRepositoryInMemory.create(user);
 
     // Tenta consultar uma operação, passando um id de movimentação não existente
-    expect(async () => {
-      await getStatementOperationUseCase.execute({
+    await expect(
+      getStatementOperationUseCase.execute({
         user_id: createdUser.id!,
         statement_id: 'non-existent',
-      });
-    }).rejects.toBeInstanceOf(GetStatementOperationError.StatementNotFound);
+      })
+    ).rejects.toBeInstanceOf(GetStatementOperationError.StatementNotFound);
   });
 });

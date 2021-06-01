@@ -59,7 +59,7 @@ class TransferFundsUseCase {
       description,
     });
 
-    // Retorna os dados da saída para exibição
+    // Retorna os dados da entrada para exibição
     return transferInOperation;
   }
 }

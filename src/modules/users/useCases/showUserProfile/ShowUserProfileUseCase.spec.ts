@@ -32,8 +32,8 @@ describe('Show User Profile Use Case', () => {
 
   it('should not be able to show a profile of a non-existent user', async () => {
     // Tenta exibir um perfil de usuário não existente
-    expect(async () => {
-      await showUserProfileUseCase.execute('non-existent');
-    }).rejects.toBeInstanceOf(ShowUserProfileError);
+    await expect(
+      showUserProfileUseCase.execute('non-existent')
+    ).rejects.toBeInstanceOf(ShowUserProfileError);
   });
 });

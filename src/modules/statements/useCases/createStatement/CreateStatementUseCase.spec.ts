@@ -75,9 +75,9 @@ describe('Create Statement Use Case', () => {
       type: OperationType.DEPOSIT,
     };
 
-    expect(async () => {
-      await createStatementUseCase.execute(statement);
-    }).rejects.toBeInstanceOf(CreateStatementError.UserNotFound);
+    await expect(
+      createStatementUseCase.execute(statement)
+    ).rejects.toBeInstanceOf(CreateStatementError.UserNotFound);
   });
 
   it('should not be able to create a new withdrawal with insufficient funds', async () => {
@@ -90,14 +90,13 @@ describe('Create Statement Use Case', () => {
     const createdUser = await usersRepositoryInMemory.create(user);
 
     // Tenta criar um saque, sem ter fundos suficientes
-    expect(async () => {
-      const statement = {
+    await expect(
+      createStatementUseCase.execute({
         user_id: createdUser.id!,
         description: 'Failed withdrawal',
-        amount: 99.00,
+        amount: 999.00,
         type: OperationType.WITHDRAW,
-      };
-      await createStatementUseCase.execute(statement);
-    }).rejects.toBeInstanceOf(CreateStatementError.InsufficientFunds);
+      })
+    ).rejects.toBeInstanceOf(CreateStatementError.InsufficientFunds);
   });
 });

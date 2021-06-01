@@ -33,10 +33,19 @@ export class InMemoryStatementsRepository implements IStatementsRepository {
     const balance = statement.reduce((acc, operation) => {
       if (operation.type === OperationType.DEPOSIT) {
         return acc + Number(operation.amount);
-      } else {
+      } else if (operation.type === OperationType.WITHDRAW) {
         return acc - Number(operation.amount);
+      } else {
+        // É uma transferência
+        if (operation.user_id === operation.sender_id) {
+          // Emissor é o autor da operação (é uma retirada)
+          return acc - Number(operation.amount);
+        } else {
+          // O autor da operação é outro usuário (é um recebimento)
+          return acc + Number(operation.amount);
+        }
       }
-    }, 0)
+    }, 0);
 
     if (with_statement) {
       return {

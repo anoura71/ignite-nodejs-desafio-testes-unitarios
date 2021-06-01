@@ -35,12 +35,12 @@ describe('Create User Use Case', () => {
     await createUserUseCase.execute(user);
 
     // Tenta criar outro usuário, usando o mesmo e-mail
-    expect(async () => {
-      await createUserUseCase.execute({
+    await expect(
+      createUserUseCase.execute({
         name: 'Another User',
         email: 'john.doe@foo.com',
         password: 'other'
-      });
-    }).rejects.toBeInstanceOf(CreateUserError);
+      })
+    ).rejects.toBeInstanceOf(CreateUserError);
   });
 });
