@@ -54,7 +54,7 @@ class TransferFundsUseCase {
     const transferInOperation = await this.statementsRepository.create({
       user_id: receiver_id,
       sender_id,
-      type: OperationType.DEPOSIT,
+      type: OperationType.TRANSFER,
       amount,
       description,
     });

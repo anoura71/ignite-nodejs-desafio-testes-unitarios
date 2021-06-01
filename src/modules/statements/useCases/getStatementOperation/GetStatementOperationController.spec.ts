@@ -4,6 +4,7 @@ import { Connection, createConnection } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 import { app } from '../../../../app';
+import { OperationType } from '../../entities/Statement';
 
 let connection: Connection;
 
@@ -65,7 +66,7 @@ describe('Get Statement Operation Controller', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.id).toBe(responseDeposit.body.id);
     expect(response.body.user_id).toBe(responseToken.body.user.id);
-    expect(response.body.type).toBe('deposit');
+    expect(response.body.type).toBe(OperationType.DEPOSIT);
     expect(Number(response.body.amount)).toBe(130.00);
   });
 

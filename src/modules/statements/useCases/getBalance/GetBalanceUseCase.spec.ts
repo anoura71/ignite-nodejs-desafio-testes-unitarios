@@ -29,14 +29,14 @@ describe('Get Balance Use Case', () => {
     // Cria movimentações para o usuário
     const deposit = {
       user_id: createdUser.id!,
-      description: 'deposit',
+      description: 'Deposit',
       amount: 100.00,
       type: OperationType.DEPOSIT,
     };
     await statementsRepositoryInMemory.create(deposit);
     const withdrawal = {
       user_id: createdUser.id!,
-      description: 'withdrawal',
+      description: 'Withdrawal',
       amount: 30.00,
       type: OperationType.WITHDRAW,
     };

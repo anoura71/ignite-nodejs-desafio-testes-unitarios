@@ -4,6 +4,7 @@ export class BalanceMap {
   static toDTO({ statement, balance }: { statement: Statement[], balance: number }) {
     const parsedStatement = statement.map(({
       id,
+      user_id,
       sender_id,
       amount,
       description,
@@ -11,7 +12,7 @@ export class BalanceMap {
       created_at,
       updated_at
     }) => (
-      !!sender_id ?
+      (!!sender_id && user_id !== sender_id) ?
         {
           id,
           sender_id,

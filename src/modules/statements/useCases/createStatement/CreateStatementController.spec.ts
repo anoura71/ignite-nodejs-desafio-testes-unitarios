@@ -59,7 +59,7 @@ describe('Create Statement Controller', () => {
 
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty('id');
-    expect(response.body.type).toBe('deposit');
+    expect(response.body.type).toBe(OperationType.DEPOSIT);
     expect(Number(response.body.amount)).toBe(100.00);
   });
 

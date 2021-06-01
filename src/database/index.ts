@@ -9,7 +9,7 @@ import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 //     Object.assign(defaultOptions, {
 //       database:
 //         process.env.NODE_ENV === 'test'
-//           ? 'fin_api'
+//           ? 'fin_api_test'
 //           : defaultOptions.database,
 //     })
 //   );

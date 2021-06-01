@@ -29,7 +29,7 @@ describe('Get Statement Operation Use Case', () => {
     // Cria uma movimentação para o usuário
     const deposit = {
       user_id: createdUser.id!,
-      description: 'deposit',
+      description: 'Deposit',
       amount: 33.00,
       type: OperationType.DEPOSIT,
     };
@@ -55,7 +55,7 @@ describe('Get Statement Operation Use Case', () => {
     // Cria uma movimentação para o usuário
     const deposit = {
       user_id: createdUser.id!,
-      description: 'deposit',
+      description: 'Deposit',
       amount: 66.00,
       type: OperationType.DEPOSIT,
     };
